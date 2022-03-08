@@ -1,0 +1,39 @@
+service: orthotics-analysis-backend
+frameworkVersion: '>=2'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: ap-south-1
+
+plugins:
+  - serverless-iam-roles-per-function
+custom:
+  cognitoArn: ''
+
+  apiHeaders:
+    - Content-Type
+    - X-Amz-Date
+    - X-Api-Key
+    - X-Amz-Security-Token
+    - X-Amz-User-Agent
+    - X-Authorization
+    - Access-Token
+    - Access-Control-Allow-Origin
+    - Access-Control-Allow-Headers
+    - Access-Control-Allow-Credentials
+    - Access-Control-Allow-Methods
+
+package:
+  patterns:
+    - src/functions/**
+    - src/lib/**
+    - src/**
+    - src/functions/index.ts
+  individually: true
+
+
+functions:
+  - ${file(functions.yml)}

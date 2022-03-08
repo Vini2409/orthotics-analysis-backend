@@ -1,0 +1,8 @@
+saveLocationData:
+  handler: src/functions/hello/index.handler
+  name: save-location-data
+  events:
+    - http:
+        path: /location
+        method: post
+        cors: true
